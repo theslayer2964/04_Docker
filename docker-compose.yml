@@ -1,0 +1,25 @@
+
+version: '3.8'
+services:
+ web: 
+  image: chuyen-bay:latest
+  ports:
+   - "8081:8080"
+  depends_on:
+   - mysql
+ mysql:
+  image: mysql:latest
+  environment:
+   - MYSQL_ROOT_PASSWORD=sapassword
+   - MYSQL_DATABASE=test
+   - MYSQL_USER=root1
+   - MYSQL_PASSWORD=sapassword
+  ports:
+   - 3307:3306
+  volumes:
+   - mysql-data:/var/lib/mysql
+   - ./mysql.sql:/docker-entrypoint-initdb.d/init.sql
+volumes:
+ mysql-data:
+   
+     
